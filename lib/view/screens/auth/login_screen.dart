@@ -16,7 +16,7 @@ class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  final formKey = GlobalKey<FormState>();
+  GlobalKey formKey = GlobalKey<FormState>();
 
   final controller = Get.find<AuthController>();
   @override
@@ -157,10 +157,18 @@ class LoginScreen extends StatelessWidget {
                         SizedBox(
                           height: 50,
                         ),
-                        AuthButton(
-                          onpress: () {},
-                          text: 'LOG IN',
-                        ),
+                        GetBuilder<AuthController>(builder: (_) {
+                          return AuthButton(
+                            onpress: () {
+                           //   if (formKey.currentState!.validate()) {
+                                controller.logInUsingFirebase(
+                                    email: emailController.text.trim(),
+                                    password: passwordController.text);
+                          //    }
+                            },
+                            text: 'LOG IN',
+                          );
+                        }),
                         const SizedBox(
                           height: 10,
                         ),
@@ -184,11 +192,18 @@ class LoginScreen extends StatelessWidget {
                             SizedBox(
                               width: 10,
                             ),
-                            Image.asset(
-                              'assets/images/google1.png',
-                              height: 44,
-                              width: 44,
-                            ),
+                           GetBuilder<AuthController>(builder: (_){
+                             return  InkWell(
+                               onTap: (){
+                                 controller.googleSignUpApp();
+                               },
+                               child: Image.asset(
+                                 'assets/images/google1.png',
+                                 height: 44,
+                                 width: 44,
+                               ),
+                             );
+                           })
                           ],
                         ),
                       ],

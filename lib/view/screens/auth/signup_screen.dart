@@ -3,30 +3,28 @@ import 'package:e_commerce/logic/controller/auth_controller.dart';
 import 'package:e_commerce/utils/my_string%20.dart';
 import 'package:e_commerce/utils/routes/routes.dart';
 import 'package:e_commerce/utils/theme.dart';
-import 'package:e_commerce/view/screens/auth/login_screen.dart';
-import 'package:e_commerce/view/screens/auth/login_screen.dart';
-import 'package:e_commerce/view/screens/auth/login_screen.dart';
-import 'package:e_commerce/view/screens/auth/login_screen.dart';
-import 'package:e_commerce/view/screens/auth/login_screen.dart';
-import 'package:e_commerce/view/screens/auth/login_screen.dart';
+
 import 'package:e_commerce/view/widget/auth/auth_button.dart';
 import 'package:e_commerce/view/widget/auth/auth_text_from_field.dart';
 import 'package:e_commerce/view/widget/auth/container_under.dart';
 import 'package:e_commerce/view/widget/check_widget.dart';
 import 'package:e_commerce/view/widget/text_util.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 
 class SignupScreen extends StatelessWidget {
-  final nameController = TextEditingController();
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   final controller = Get.find<AuthController>();
 
   final formKey = GlobalKey<FormState>();
+
+  SignupScreen({super.key});
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -37,16 +35,16 @@ class SignupScreen extends StatelessWidget {
         ),
         backgroundColor: Get.isDarkMode ? Colors.white : blackColor,
         body: SingleChildScrollView(
-          child: Form(
-            key: formKey,
-            child: Column(
-              children: [
-                Container(
-                  width: double.infinity,
-                  height: MediaQuery.of(context).size.height / 1.3,
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.only(left: 25, right: 25, top: 40),
+          child: Column(
+            children: [
+              Container(
+                width: double.infinity,
+                height: MediaQuery.of(context).size.height / 1.3,
+                child: Padding(
+                  padding:
+                      const EdgeInsets.only(left: 25, right: 25, top: 40),
+                  child: Form(
+                    key: formKey,
                     child: Column(
                       children: [
                         Row(
@@ -182,26 +180,48 @@ class SignupScreen extends StatelessWidget {
                         SizedBox(
                           height: 50,
                         ),
-                        AuthButton(
-                          onpress: () {},
-                          text: 'SIGN UP',
+                        GetBuilder<AuthController>(
+                          builder: (_) {
+                            return AuthButton(
+                              onpress: () {
+                                if (controller.ischeckBox == false) {
+                                  Get.snackbar(
+                                    'Check Box',
+                                    'please , Accept terms & conditions',
+                                    snackPosition: SnackPosition.BOTTOM,
+                                    backgroundColor: Colors.green,
+                                    colorText: Colors.white,
+                                  );
+                                } else {
+                                  //    if(formKey.currentState!.validate()){
+                                  String name = nameController.text.trim();
+                                  String email = emailController.text.trim();
+                                  String password = passwordController.text;
+                                  controller.signUpUsingFirebase(
+                                      name: name,
+                                      email: email,
+                                      password: password
+                                  );
+                                  controller.ischeckBox = true;
+                                  //    }
+                                }
+                              },
+                              text: 'SIGN UP',
+                            );
+                          },
                         ),
-
-                        // Expanded(
-                        //   child:
-                        // ),
                       ],
                     ),
                   ),
                 ),
-                ContainerUnder(
-                    text: 'Already have an Account? ',
-                    textType: 'Log in',
-                    onPress: () {
-                      Get.offNamed(Routes.loginScreen);
-                    }),
-              ],
-            ),
+              ),
+              ContainerUnder(
+                  text: 'Already have an Account? ',
+                  textType: 'Log in',
+                  onPress: () {
+                    Get.offNamed(Routes.loginScreen);
+                  }),
+            ],
           ),
         ),
       ),

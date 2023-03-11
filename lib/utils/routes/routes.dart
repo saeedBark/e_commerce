@@ -1,7 +1,9 @@
 import 'package:e_commerce/logic/bindings/aut_biniding.dart';
+import 'package:e_commerce/logic/bindings/main_binding.dart';
 import 'package:e_commerce/view/screens/auth/forgot_password_screen.dart';
 import 'package:e_commerce/view/screens/auth/login_screen.dart';
 import 'package:e_commerce/view/screens/auth/signup_screen.dart';
+import 'package:e_commerce/view/screens/main_screen.dart';
 import 'package:e_commerce/view/screens/welcome_screen.dart';
 import 'package:get/get.dart';
 
@@ -26,7 +28,12 @@ class AppRoute {
     GetPage(
       name: Routes.forgetScreen,
       page: () => ForgetScreen(),
+      binding: AuthBinding(),
     ),
+    GetPage(name: Routes.mainScreen, page: () => MainScreen(), bindings: [
+      AuthBinding(),
+      MainBainding(),
+    ]),
   ];
 }
 
@@ -35,4 +42,5 @@ class Routes {
   static const loginScreen = '/loginScreen';
   static const signupScreen = '/signupScreen';
   static const forgetScreen = '/forgetScreen';
+  static const mainScreen = '/mainScreen';
 }

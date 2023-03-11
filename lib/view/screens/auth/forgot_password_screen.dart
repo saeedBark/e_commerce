@@ -1,3 +1,4 @@
+import 'package:e_commerce/logic/controller/auth_controller.dart';
 import 'package:e_commerce/utils/my_string%20.dart';
 import 'package:e_commerce/view/widget/auth/auth_button.dart';
 import 'package:e_commerce/view/widget/auth/auth_text_from_field.dart';
@@ -11,6 +12,7 @@ class ForgetScreen extends StatelessWidget {
   ForgetScreen({super.key});
   final formkey = GlobalKey<FormState>();
   final emailController = TextEditingController();
+  final controller = Get.find<AuthController>();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -33,11 +35,11 @@ class ForgetScreen extends StatelessWidget {
             },
           ),
         ),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Form(
-              key: formkey,
+        body: Form(
+          key: formkey,
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
               child: Column(
                 children: [
                   Align(
@@ -102,10 +104,18 @@ class ForgetScreen extends StatelessWidget {
                   SizedBox(
                     height: 40,
                   ),
-                  AuthButton(
-                    onpress: () {},
-                    text: 'SEND',
-                  ),
+                 GetBuilder<AuthController>(
+                     builder: (_){
+                   return  AuthButton(
+                     onpress: () {
+                   //    if(formkey.currentState!.validate()){
+                       String email = emailController.text.trim();
+                         controller.restPassword( email: email,);
+                   //    }
+                     },
+                     text: 'SEND',
+                   );
+                 })
                 ],
               ),
             ),
