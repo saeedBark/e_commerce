@@ -6,10 +6,16 @@ import 'package:get/get.dart';
 
 class MainController extends GetxController {
   RxInt currentIndex = 0.obs;
-  final tabs = [
+  final tabs = const [
     HomeScreen(),
     CategoryScreen(),
     FavoritesScreen(),
     SettingScreen(),
+  ].obs;
+  final title = [
+    'Saeed Shop',
+    'Categories',
+    'Favorites',
+    'Setting',
   ].obs;
 }

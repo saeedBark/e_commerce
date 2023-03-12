@@ -23,11 +23,11 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: context.theme.backgroundColor,
         appBar: AppBar(
-          backgroundColor: Get.isDarkMode ? Colors.white : blackColor,
+          backgroundColor: Get.isDarkMode ? blackColor:Colors.white ,
           elevation: 0,
         ),
-        backgroundColor: Get.isDarkMode ? Colors.white : blackColor,
         body: SingleChildScrollView(
           child: Form(
             key: formKey,

@@ -1,12 +1,15 @@
+import 'package:e_commerce/logic/controller/theme_controller.dart';
 import 'package:e_commerce/utils/routes/routes.dart';
-import 'package:e_commerce/view/screens/welcome_screen.dart';
+import 'package:e_commerce/utils/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
  await Firebase.initializeApp();
+ await GetStorage.init();
   runApp(const Ecommerce());
 }
 
@@ -19,9 +22,9 @@ class Ecommerce extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Shop app',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme:ThemeApp.light,
+      darkTheme: ThemeApp.dark,
+      themeMode: ThemeController().themDataGet,
       initialRoute: AppRoute.welcom,
       getPages: AppRoute.routes,
     );

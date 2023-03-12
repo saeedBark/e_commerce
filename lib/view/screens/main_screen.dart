@@ -3,7 +3,6 @@ import 'package:e_commerce/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
 class MainScreen extends StatelessWidget {
   MainScreen({Key? key}) : super(key: key);
 
@@ -14,59 +13,63 @@ class MainScreen extends StatelessWidget {
       child: Obx(
         () {
           return Scaffold(
+            backgroundColor: context.theme.backgroundColor,
             appBar: AppBar(
               elevation: 0,
               leading: Container(),
               actions: [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.isDarkMode
+                        ? Get.changeThemeMode(ThemeMode.light)
+                        : Get.changeThemeMode(ThemeMode.dark);
+                  },
                   icon: Icon(Icons.shop),
                 ),
               ],
-              title: Text('Saeed Shop'),
+              title: Text(controller.title[controller.currentIndex.value]),
               centerTitle: true,
-              backgroundColor: Get.isDarkMode ? mainColor : blackColor,
+              backgroundColor: Get.isDarkMode ? blackColor : mainColor,
             ),
-            backgroundColor: Get.isDarkMode ? Colors.white : blackColor,
             bottomNavigationBar: BottomNavigationBar(
               currentIndex: controller.currentIndex.value,
               type: BottomNavigationBarType.fixed,
-              backgroundColor: Get.isDarkMode ? Colors.white : blackColor,
+              backgroundColor: Get.isDarkMode ? blackColor : Colors.white,
               items: [
                 BottomNavigationBarItem(
                   activeIcon: Icon(
                     Icons.home,
-                    color: Get.isDarkMode ? mainColor : Colors.pink,
+                    color: Get.isDarkMode ? pinkColor:mainColor ,
                   ),
                   icon: Icon(Icons.home,
-                      color: Get.isDarkMode ? blackColor : Colors.white),
+                      color:  Get.isDarkMode ? Colors.white : blackColor),
                   label: 'Home',
                 ),
                 BottomNavigationBarItem(
                   activeIcon: Icon(
                     Icons.category,
-                    color: Get.isDarkMode ? mainColor : Colors.pink,
+                    color: Get.isDarkMode ? pinkColor:mainColor ,
                   ),
                   icon: Icon(Icons.category,
-                      color: Get.isDarkMode ? blackColor : Colors.white),
+                      color:  Get.isDarkMode ? Colors.white : blackColor),
                   label: 'Category',
                 ),
                 BottomNavigationBarItem(
                   activeIcon: Icon(
                     Icons.favorite,
-                    color: Get.isDarkMode ? mainColor : Colors.pink,
+                    color:Get.isDarkMode ? pinkColor:mainColor ,
                   ),
                   icon: Icon(Icons.favorite,
-                      color: Get.isDarkMode ? blackColor : Colors.white),
+                      color: Get.isDarkMode ? Colors.white : blackColor),
                   label: 'Favorite',
                 ),
                 BottomNavigationBarItem(
                   activeIcon: Icon(
                     Icons.settings,
-                    color: Get.isDarkMode ? mainColor : Colors.pink,
+                    color: Get.isDarkMode ? pinkColor : mainColor ,
                   ),
                   icon: Icon(Icons.settings,
-                      color: Get.isDarkMode ? blackColor : Colors.white),
+                      color: Get.isDarkMode ? Colors.white : blackColor),
                   label: 'Setting',
                 ),
               ],

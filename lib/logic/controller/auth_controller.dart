@@ -2,6 +2,7 @@ import 'package:e_commerce/utils/routes/routes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthController extends GetxController {
@@ -10,7 +11,11 @@ class AuthController extends GetxController {
   var displayUserName = '';
   var googleSinup = GoogleSignIn();
   var displayUserPhoto = '';
+  final GetStorage boxAuth = GetStorage();
+  var isSignIn = false;
   FirebaseAuth auth = FirebaseAuth.instance;
+
+
 
   void visibilty() {
     isVisibilty = !isVisibilty;
@@ -75,6 +80,8 @@ class AuthController extends GetxController {
           email: email, password: password)
           .then((value) {
         auth.currentUser!.updateDisplayName(displayUserName);
+        isSignIn = true;
+        boxAuth.write('saveLogin', isSignIn);
 
       }
       );
@@ -112,6 +119,8 @@ class AuthController extends GetxController {
       final GoogleSignInAccount? googleUser = await googleSinup.signIn();
       displayUserName = googleUser!.displayName!;
       displayUserPhoto = googleUser.photoUrl!;
+      isSignIn = true;
+      boxAuth.write('saveLogin', isSignIn);
       update();
       Get.offNamed(Routes.mainScreen);
     }catch(error){
@@ -163,5 +172,27 @@ class AuthController extends GetxController {
       );
     }
   }
-  void signOutFromApp() {}
+  void signOutFromApp() async{
+    try{
+    await  auth.signOut();
+  //  await googleSinup.signOut();
+  //  await FacebookAuth.
+      displayUserName = '';
+      displayUserPhoto= '';
+      update();
+      Get.offNamed(Routes.welcomeScreen);
+
+    isSignIn = false;
+    boxAuth.remove('saveLogin');
+
+    }catch(error){
+      Get.snackbar(
+        'Error!',
+        error.toString(),
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.green,
+        colorText: Colors.white,
+      );
+    }
+  }
 }

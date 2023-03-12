@@ -17,7 +17,7 @@ class ForgetScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Get.isDarkMode ? Colors.white : Colors.black,
+        backgroundColor: context.theme.backgroundColor,
         appBar: AppBar(
           backgroundColor: Get.isDarkMode ? Colors.white : Colors.black,
           title: Text(
