@@ -37,7 +37,34 @@ class SettingScreen extends StatelessWidget {
                         color: Get.isDarkMode ? Colors.white : blackColor),
                   ),
                   onPressed: () {
-                    controller.signOutFromApp();
+                    Get.defaultDialog(
+                      title: 'Log Out From App',
+                      titleStyle: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                      middleText: 'Are you sure you need to logout ',
+                      middleTextStyle: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                      backgroundColor: Colors.grey,
+                      radius: 10,
+                      textCancel: 'NO',
+                      cancelTextColor:Get.isDarkMode ? Colors.white : blackColor,
+                      textConfirm: 'YES',
+                      confirmTextColor: Get.isDarkMode ? Colors.white : blackColor,
+                      onCancel: (){
+                        Get.back();
+                      },
+                      onConfirm: (){
+                        controller.signOutFromApp();
+                      },
+                      buttonColor:Get.isDarkMode? pinkColor:mainColor ,
+                    );
+
                   },
                 );
               },
