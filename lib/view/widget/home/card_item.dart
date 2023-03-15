@@ -7,14 +7,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CardItem extends StatelessWidget {
-   CardItem({Key? key}) : super(key: key);
-var controller = Get.find<ProductController>();
+  CardItem({Key? key}) : super(key: key);
+  var controller = Get.find<ProductController>();
   @override
   Widget build(BuildContext context) {
     return Obx(() {
       if (controller.isLoading.value) {
-        return  Center(child: CircularProgressIndicator(color: Get.isDarkMode ? pinkColor : mainColor,),);
-      }else{
+        return Center(
+          child: CircularProgressIndicator(
+            color: Get.isDarkMode ? pinkColor : mainColor,
+          ),
+        );
+      } else {
         return Expanded(
           child: GridView.builder(
             gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
@@ -29,6 +33,7 @@ var controller = Get.find<ProductController>();
                 image: controller.productList[index].image,
                 price: controller.productList[index].price,
                 rating: controller.productList[index].rating.rate,
+                productId: controller.productList[index].id,
                 //controller.productList[index]
               );
             },
@@ -38,14 +43,14 @@ var controller = Get.find<ProductController>();
     });
   }
 
-  Widget buildCardItem( {
+  Widget buildCardItem({
     required String image,
     required double price,
     required double rating,
-
-    }
+    required int productId,
+  }
       //ProductModels model
-) {
+      ) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
@@ -61,23 +66,32 @@ var controller = Get.find<ProductController>();
         ),
         child: Column(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.favorite_outline,
-                      color: Colors.black,
-                    )),
-                IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.add,
-                      color: Colors.black,
-                    )),
-              ],
-            ),
+            Obx(() {
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconButton(
+                      onPressed: () {
+                        controller.manageFavorites(productId);
+                      },
+                      icon: controller.isFavorites(productId)
+                          ? const Icon(
+                              Icons.favorite,
+                              color: Colors.red,
+                            )
+                          : const Icon(
+                              Icons.favorite_outline,
+                              color: Colors.black,
+                            )),
+                  IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.add,
+                        color: Colors.black,
+                      )),
+                ],
+              );
+            }),
             Container(
               width: double.infinity,
               height: 140,
@@ -87,7 +101,7 @@ var controller = Get.find<ProductController>();
               ),
               child: Image.network(
                 image,
-               // fit: BoxFit.cover,
+                // fit: BoxFit.cover,
               ),
             ),
             const SizedBox(
@@ -114,7 +128,7 @@ var controller = Get.find<ProductController>();
                       color: mainColor,
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 3,right: 3),
+                      padding: const EdgeInsets.only(left: 3, right: 3),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -125,7 +139,11 @@ var controller = Get.find<ProductController>();
                             color: Colors.white,
                             underline: TextDecoration.none,
                           ),
-                         const Icon(Icons.star,size: 13,color: Colors.white,),
+                          const Icon(
+                            Icons.star,
+                            size: 13,
+                            color: Colors.white,
+                          ),
                         ],
                       ),
                     ),
