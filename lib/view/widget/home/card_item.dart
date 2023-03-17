@@ -25,7 +25,7 @@ class CardItem extends StatelessWidget {
               childAspectRatio: 0.8,
               mainAxisSpacing: 9,
               crossAxisSpacing: 6,
-              maxCrossAxisExtent: 200,
+              maxCrossAxisExtent: 300,
             ),
             itemCount: controller.productList.length,
             itemBuilder: (BuildContext context, int index) {

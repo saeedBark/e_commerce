@@ -1,4 +1,5 @@
 import 'package:e_commerce/logic/controller/main_controller.dart';
+import 'package:e_commerce/utils/routes/routes.dart';
 import 'package:e_commerce/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,9 +21,7 @@ class MainScreen extends StatelessWidget {
               actions: [
                 IconButton(
                   onPressed: () {
-                    Get.isDarkMode
-                        ? Get.changeThemeMode(ThemeMode.light)
-                        : Get.changeThemeMode(ThemeMode.dark);
+                     Get.toNamed(Routes.cartScreen);
                   },
                   icon: Icon(Icons.shop),
                 ),
