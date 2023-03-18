@@ -1,3 +1,4 @@
+import 'package:e_commerce/logic/controller/cart_controller.dart';
 import 'package:e_commerce/logic/controller/product_controller.dart';
 import 'package:e_commerce/model/product_models.dart';
 import 'package:e_commerce/utils/theme.dart';
@@ -9,6 +10,7 @@ import 'package:get/get.dart';
 class CardItem extends StatelessWidget {
   CardItem({Key? key}) : super(key: key);
   var controller = Get.find<ProductController>();
+  var cartcontroller = Get.find<CartController>();
   @override
   Widget build(BuildContext context) {
     return Obx(() {
@@ -34,6 +36,7 @@ class CardItem extends StatelessWidget {
                 price: controller.productList[index].price,
                 rating: controller.productList[index].rating.rate,
                 productId: controller.productList[index].id,
+                productModels: controller.productList[index],
                 //controller.productList[index]
               );
             },
@@ -48,6 +51,7 @@ class CardItem extends StatelessWidget {
     required double price,
     required double rating,
     required int productId,
+    required ProductModels productModels,
   }
       //ProductModels model
       ) {
@@ -84,9 +88,11 @@ class CardItem extends StatelessWidget {
                               color: Colors.black,
                             )),
                   IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        cartcontroller.addProductToCart(productModels);
+                      },
                       icon: const Icon(
-                        Icons.add,
+                        Icons.shopping_cart,
                         color: Colors.black,
                       )),
                 ],

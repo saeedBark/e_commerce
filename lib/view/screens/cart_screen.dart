@@ -1,36 +1,65 @@
+import 'package:e_commerce/logic/controller/cart_controller.dart';
 import 'package:e_commerce/utils/theme.dart';
 import 'package:e_commerce/view/widget/cart/cart_product_card.dart';
+import 'package:e_commerce/view/widget/cart/cart_total.dart';
 import 'package:e_commerce/view/widget/cart/cart_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CartScreen extends StatelessWidget {
-  const CartScreen({Key? key}) : super(key: key);
-
+  CartScreen({Key? key}) : super(key: key);
+  var controller = Get.find<CartController>();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          backgroundColor: context.theme.backgroundColor,
-          appBar: AppBar(
-            title: Text('Cart Item'),
-            centerTitle: true,
-            elevation: 0,
-            backgroundColor: Get.isDarkMode ? blackColor : mainColor,
-            actions: [
-              IconButton(onPressed: () {}, icon: Icon(Icons.backspace)),
-            ],
-          ),
-          body: SingleChildScrollView(
-            child: SizedBox(
-              height: 600,
-              child: ListView.separated(
-                itemBuilder: (context,index) => CartProductCard(),
-                separatorBuilder: (context,index) => SizedBox(height: 20,),
-                itemCount: 1,
-              ),
-            ),
-          )),
+        backgroundColor: context.theme.backgroundColor,
+        appBar: AppBar(
+          title: Text('Cart Item'),
+          centerTitle: true,
+          elevation: 0,
+          backgroundColor: Get.isDarkMode ? blackColor : mainColor,
+          actions: [
+            IconButton(onPressed: () {
+              controller.clearAllProducts();
+            }, icon: Icon(Icons.backspace)),
+          ],
+        ),
+        body: Obx((){
+           if(controller.productsMap.isEmpty){
+            return EmptyCard();
+          }else {
+             return SingleChildScrollView(
+               child: Column(
+                 children: [
+                   SizedBox(
+                     height: 650,
+                     child: ListView.separated(
+                       itemBuilder: (context, index) =>
+                           CartProductCard(
+                             productModels: controller.productsMap.keys
+                                 .toList()[index],
+                             index: index, quantity: controller.productsMap
+                               .values.toList()[index],
+                           ),
+                       separatorBuilder: (context, index) =>
+                           SizedBox(
+                             height: 20,
+                           ),
+                       itemCount: controller.productsMap.length,
+                     ),
+                   ),
+                   Padding(
+                     padding: EdgeInsets.all(20.0),
+                     child: CartTotal(),
+                   ),
+                 ],
+               ),
+             );
+           }
+        },
+      ),
+      ),
     );
   }
 }

@@ -8,6 +8,7 @@ class MainScreen extends StatelessWidget {
   MainScreen({Key? key}) : super(key: key);
 
   final controller = Get.find<MainController>();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
