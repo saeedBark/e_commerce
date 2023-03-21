@@ -57,11 +57,11 @@ class LoginScreen extends StatelessWidget {
                                 fontWeight: FontWeight.bold,
                                 text: 'IN',
                                 color:
-                                    Get.isDarkMode ? blackColor : Colors.white,
+                                    Get.isDarkMode ?  Colors.white : blackColor ,
                                 underline: TextDecoration.none)
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 50,
                         ),
                         authTextFromField(
@@ -76,12 +76,12 @@ class LoginScreen extends StatelessWidget {
                                   width: 10,
                                   color: Colors.blue,
                                 )
-                              : Icon(
+                              : const Icon(
                                   Icons.email,
                                   color: Colors.deepOrange,
                                   size: 30,
                                 ),
-                          suffixIcon: Text(""),
+                          suffixIcon: const Text(""),
                           text: 'Email',
                           type: TextInputType.emailAddress,
                           validator: (Value) {
@@ -91,7 +91,7 @@ class LoginScreen extends StatelessWidget {
                             return null;
                           },
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         GetBuilder<AuthController>(builder: (_) {
@@ -107,7 +107,7 @@ class LoginScreen extends StatelessWidget {
                                     width: 7,
                                     color: Colors.blue,
                                   )
-                                : Icon(
+                                : const Icon(
                                     Icons.password,
                                     color: Colors.deepOrange,
                                     size: 30,
@@ -117,11 +117,11 @@ class LoginScreen extends StatelessWidget {
                                   controller.visibilty();
                                 },
                                 icon: controller.isVisibilty
-                                    ? Icon(
+                                    ? const Icon(
                                         Icons.visibility_off,
                                         color: Colors.black,
                                       )
-                                    : Icon(
+                                    : const Icon(
                                         Icons.visibility,
                                         color: Colors.black,
                                       )),
@@ -146,15 +146,15 @@ class LoginScreen extends StatelessWidget {
                                 fontWeight: FontWeight.normal,
                                 text: 'Forget Password? ',
                                 color: Get.isDarkMode
-                                    ? Colors.black
-                                    : Colors.white,
+                                    ?
+                                    Colors.white :Colors.black,
                                 underline: TextDecoration.none),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 30,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 50,
                         ),
                         GetBuilder<AuthController>(builder: (_) {
@@ -176,9 +176,9 @@ class LoginScreen extends StatelessWidget {
                             fontSize: 22,
                             fontWeight: FontWeight.normal,
                             text: 'OR',
-                            color: Get.isDarkMode ? Colors.black : Colors.white,
+                            color: Get.isDarkMode ?   Colors.white : Colors.black,
                             underline: TextDecoration.none),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         Row(
@@ -189,7 +189,7 @@ class LoginScreen extends StatelessWidget {
                               height: 50,
                               width: 50,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 10,
                             ),
                            GetBuilder<AuthController>(builder: (_){

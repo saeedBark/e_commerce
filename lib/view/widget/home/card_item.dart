@@ -18,7 +18,8 @@ class CardItem extends StatelessWidget {
       if (controller.isLoading.value) {
         return Center(
           child: CircularProgressIndicator(
-            color: Get.isDarkMode ? pinkColor : mainColor,
+            color:Get.isDarkMode ? Colors.black : Colors.white,
+            //Get.isDarkMode ? pinkColor : mainColor,
           ),
         );
       } else {
@@ -32,6 +33,7 @@ class CardItem extends StatelessWidget {
             ),
             itemCount: controller.productList.length,
             itemBuilder: (BuildContext context, int index) {
+
               return buildCardItem(
                 image: controller.productList[index].image,
                 price: controller.productList[index].price,

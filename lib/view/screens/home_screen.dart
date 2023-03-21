@@ -56,7 +56,7 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Padding(
@@ -66,13 +66,13 @@ class HomeScreen extends StatelessWidget {
               child: TextUtils(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
-                text: 'Category',
+                text: 'Products',
                 color: Get.isDarkMode ? Colors.white : Colors.black,
                 underline: TextDecoration.none,
               ),
             ),
           ),
-          SizedBox(height: 10,),
+          const SizedBox(height: 10,),
           CardItem(),
         ],
       ),

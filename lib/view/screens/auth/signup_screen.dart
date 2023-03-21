@@ -68,7 +68,7 @@ class SignupScreen extends StatelessWidget {
                                 underline: TextDecoration.none)
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 50,
                         ),
                         authTextFromField(
@@ -83,12 +83,12 @@ class SignupScreen extends StatelessWidget {
                                   width: 10,
                                   color: Colors.blue,
                                 )
-                              : Icon(
+                              : const Icon(
                                   Icons.person,
                                   color: Colors.deepOrange,
                                   size: 30,
                                 ),
-                          suffixIcon: Text(""),
+                          suffixIcon: const Text(""),
                           text: 'User Name',
                           type: TextInputType.name,
                           validator: (Value) {
@@ -99,7 +99,7 @@ class SignupScreen extends StatelessWidget {
                             return null;
                           },
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         authTextFromField(
@@ -114,12 +114,12 @@ class SignupScreen extends StatelessWidget {
                                   width: 10,
                                   color: Colors.blue,
                                 )
-                              : Icon(
+                              : const Icon(
                                   Icons.email,
                                   color: Colors.deepOrange,
                                   size: 30,
                                 ),
-                          suffixIcon: Text(""),
+                          suffixIcon: const Text(""),
                           text: 'Email',
                           type: TextInputType.emailAddress,
                           validator: (Value) {
@@ -129,7 +129,7 @@ class SignupScreen extends StatelessWidget {
                             return null;
                           },
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         GetBuilder<AuthController>(builder: (_) {
@@ -145,7 +145,7 @@ class SignupScreen extends StatelessWidget {
                                     width: 7,
                                     color: Colors.blue,
                                   )
-                                : Icon(
+                                : const Icon(
                                     Icons.password,
                                     color: Colors.deepOrange,
                                     size: 30,
@@ -155,11 +155,11 @@ class SignupScreen extends StatelessWidget {
                                   controller.visibilty();
                                 },
                                 icon: controller.isVisibilty
-                                    ? Icon(
+                                    ? const Icon(
                                         Icons.visibility_off,
                                         color: Colors.black,
                                       )
-                                    : Icon(
+                                    : const Icon(
                                         Icons.visibility,
                                         color: Colors.black,
                                       )),
@@ -174,11 +174,11 @@ class SignupScreen extends StatelessWidget {
                           );
                         }),
 
-                        SizedBox(
+                        const SizedBox(
                           height: 30,
                         ),
                         CheckWidget(),
-                        SizedBox(
+                        const SizedBox(
                           height: 50,
                         ),
                         GetBuilder<AuthController>(

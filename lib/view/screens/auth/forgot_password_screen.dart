@@ -28,7 +28,7 @@ class ForgetScreen extends StatelessWidget {
           ),
           centerTitle: true,
           leading: IconButton(
-            icon: Icon(Icons.arrow_back),
+            icon: const Icon(Icons.arrow_back),
             color: Get.isDarkMode ? Colors.black : Colors.white,
             onPressed: () {
               Get.back();
@@ -45,17 +45,17 @@ class ForgetScreen extends StatelessWidget {
                   Align(
                     alignment: Alignment.centerRight,
                     child: IconButton(
-                      icon: Icon(Icons.close_rounded),
+                      icon: const Icon(Icons.close_rounded),
                       color: Colors.white,
                       onPressed: () {
                         Get.back();
                       },
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 40,
                   ),
-                  Text(
+                  const Text(
                     'If you want to recover your account , then please provide your email ID below..',
                     style: TextStyle(
                       color: Colors.white,
@@ -63,7 +63,7 @@ class ForgetScreen extends StatelessWidget {
                     ),
                     textAlign: TextAlign.center,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 50,
                   ),
                   Image.asset(
@@ -86,12 +86,12 @@ class ForgetScreen extends StatelessWidget {
                             width: 10,
                             color: Colors.blue,
                           )
-                        : Icon(
+                        : const Icon(
                             Icons.email,
                             color: Colors.deepOrange,
                             size: 30,
                           ),
-                    suffixIcon: Text(""),
+                    suffixIcon: const Text(""),
                     text: 'Email',
                     type: TextInputType.emailAddress,
                     validator: (Value) {
@@ -101,7 +101,7 @@ class ForgetScreen extends StatelessWidget {
                       return null;
                     },
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 40,
                   ),
                  GetBuilder<AuthController>(

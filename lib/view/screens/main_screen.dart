@@ -24,7 +24,7 @@ class MainScreen extends StatelessWidget {
                   onPressed: () {
                      Get.toNamed(Routes.cartScreen);
                   },
-                  icon: Icon(Icons.shop),
+                  icon: Icon(Icons.shopping_cart),
                 ),
               ],
               title: Text(controller.title[controller.currentIndex.value]),
@@ -52,7 +52,7 @@ class MainScreen extends StatelessWidget {
                   ),
                   icon: Icon(Icons.category,
                       color:  Get.isDarkMode ? Colors.white : blackColor),
-                  label: 'Category',
+                  label:'Products',
                 ),
                 BottomNavigationBarItem(
                   activeIcon: Icon(
