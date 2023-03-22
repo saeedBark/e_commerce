@@ -1,8 +1,9 @@
 import 'package:e_commerce/logic/controller/product_controller.dart';
+import 'package:e_commerce/utils/theme.dart';
 import 'package:e_commerce/view/widget/text_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-
+import 'package:readmore/readmore.dart';
 
 import 'package:get/get.dart';
 
@@ -10,12 +11,14 @@ class ClothesInfo extends StatelessWidget {
   final String title;
   final int producId;
   final double rate;
-  ClothesInfo(
-      {Key? key,
-      required this.title,
-      required this.producId,
-      required this.rate})
-      : super(key: key);
+  final String description;
+  ClothesInfo({
+    Key? key,
+    required this.title,
+    required this.producId,
+    required this.rate,
+    required this.description,
+  }) : super(key: key);
   final controller = Get.find<ProductController>();
   @override
   Widget build(BuildContext context) {
@@ -77,7 +80,9 @@ class ClothesInfo extends StatelessWidget {
                 color: Get.isDarkMode ? Colors.white : Colors.black,
                 underline: TextDecoration.none,
               ),
-              SizedBox(width: 8,),
+              SizedBox(
+                width: 8,
+              ),
               // RatingBar(
               //   rating: rate,
               //   icon: Icon(Icons.star,size: 20,color: Colors.grey,),
@@ -102,7 +107,31 @@ class ClothesInfo extends StatelessWidget {
                 direction: Axis.horizontal,
               ),
             ],
-          )
+          ),
+          SizedBox(
+            height: 15,
+          ),
+          ReadMoreText(
+            description,
+            trimLines: 3,
+            textAlign: TextAlign.justify,
+            // trimMode: TrimMode.Line,
+            style: TextStyle(
+                fontSize: 16,
+                height: 2,
+                color: Get.isDarkMode ? Colors.white : blackColor),
+            trimCollapsedText: ' Show more',
+            trimExpandedText: ' Show less',
+            trimMode: TrimMode.Line,
+            moreStyle: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+                color: Get.isDarkMode ? pinkColor : mainColor),
+            lessStyle: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+                color: Get.isDarkMode ? pinkColor : mainColor),
+          ),
         ],
       ),
     );
