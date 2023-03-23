@@ -31,14 +31,14 @@ class CheckWidget extends StatelessWidget {
                           fit: BoxFit.cover,
                           color: Colors.blue,
                         )
-                      : Icon(
+                      : const Icon(
                           Icons.done,
                           color: Colors.deepOrange,
                         )
                   : Container(),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             width: 5,
           ),
           Row(

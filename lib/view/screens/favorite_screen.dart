@@ -77,7 +77,7 @@ class FavoritesScreen extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 20,
             ),
             Expanded(
@@ -94,7 +94,7 @@ class FavoritesScreen extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         color: Get.isDarkMode ? Colors.white : blackColor),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 8,
                   ),
                   Text(
@@ -108,12 +108,12 @@ class FavoritesScreen extends StatelessWidget {
                 ],
               ),
             ),
-            Spacer(),
+            const Spacer(),
             IconButton(
                 onPressed: () {
                   controller.manageFavorites(productId);
                 },
-                icon: Icon(
+                icon: const Icon(
                   Icons.favorite,
                   color: Colors.red,
                 ))

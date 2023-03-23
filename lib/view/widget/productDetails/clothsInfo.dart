@@ -80,7 +80,7 @@ class ClothesInfo extends StatelessWidget {
                 color: Get.isDarkMode ? Colors.white : Colors.black,
                 underline: TextDecoration.none,
               ),
-              SizedBox(
+              const SizedBox(
                 width: 8,
               ),
               // RatingBar(
@@ -98,7 +98,7 @@ class ClothesInfo extends StatelessWidget {
               // ),
               RatingBarIndicator(
                 rating: rate,
-                itemBuilder: (context, index) => Icon(
+                itemBuilder: (context, index) => const Icon(
                   Icons.star,
                   color: Colors.amber,
                 ),
@@ -108,7 +108,7 @@ class ClothesInfo extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
           ReadMoreText(

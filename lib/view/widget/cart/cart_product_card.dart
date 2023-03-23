@@ -40,7 +40,7 @@ class CartProductCard extends StatelessWidget {
                   //
                 )),
           ),
-          SizedBox(
+          const SizedBox(
             width: 15,
           ),
           Expanded(
@@ -57,7 +57,7 @@ class CartProductCard extends StatelessWidget {
                     color: Get.isDarkMode ? Colors.white : blackColor,
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Text(
                   controller.productSubTotal[index].toStringAsFixed(2).toString(),
                   style: TextStyle(

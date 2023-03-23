@@ -16,7 +16,7 @@ class CartTotal extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              TextUtils(
+              const TextUtils(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
                 text: 'Total',
@@ -33,7 +33,7 @@ class CartTotal extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             width: 20,
           ),
           Expanded(
@@ -49,7 +49,7 @@ class CartTotal extends StatelessWidget {
                 onPressed: () {},
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+                  children: const [
                     Text('Check Out', style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold

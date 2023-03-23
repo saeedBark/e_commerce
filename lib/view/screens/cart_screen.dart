@@ -15,19 +15,19 @@ class CartScreen extends StatelessWidget {
       child: Scaffold(
         backgroundColor: context.theme.backgroundColor,
         appBar: AppBar(
-          title: Text('Cart Item'),
+          title: const Text('Cart Item'),
           centerTitle: true,
           elevation: 0,
           backgroundColor: Get.isDarkMode ? blackColor : mainColor,
           actions: [
             IconButton(onPressed: () {
               controller.clearAllProducts();
-            }, icon: Icon(Icons.backspace)),
+            }, icon: const Icon(Icons.backspace)),
           ],
         ),
         body: Obx((){
            if(controller.productsMap.isEmpty){
-            return EmptyCard();
+            return const EmptyCard();
           }else {
              return SingleChildScrollView(
                child: Column(
@@ -43,14 +43,14 @@ class CartScreen extends StatelessWidget {
                                .values.toList()[index],
                            ),
                        separatorBuilder: (context, index) =>
-                           SizedBox(
+                           const SizedBox(
                              height: 20,
                            ),
                        itemCount: controller.productsMap.length,
                      ),
                    ),
                    Padding(
-                     padding: EdgeInsets.all(20.0),
+                     padding: const EdgeInsets.all(20.0),
                      child: CartTotal(),
                    ),
                  ],

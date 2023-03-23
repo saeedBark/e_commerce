@@ -17,7 +17,7 @@ class EmptyCard extends StatelessWidget {
             color: Get.isDarkMode ? Colors.white : blackColor,
             size: 150,
           ),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
           RichText(
@@ -49,7 +49,7 @@ class EmptyCard extends StatelessWidget {
                 color: Get.isDarkMode ? Colors.white : blackColor,
                 fontWeight: FontWeight.bold),
           ),
-          SizedBox(
+          const SizedBox(
             height: 40,
           ),
           SizedBox(
@@ -65,7 +65,7 @@ class EmptyCard extends StatelessWidget {
               onPressed: () {
                 Get.toNamed(Routes.mainScreen);
               },
-              child: Text('Go to Home',style: TextStyle(fontSize: 20,),),
+              child: const Text('Go to Home',style: TextStyle(fontSize: 20,),),
             ),
           ),
         ],

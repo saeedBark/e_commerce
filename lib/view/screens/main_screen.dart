@@ -24,7 +24,7 @@ class MainScreen extends StatelessWidget {
                   onPressed: () {
                      Get.toNamed(Routes.cartScreen);
                   },
-                  icon: Icon(Icons.shopping_cart),
+                  icon: const Icon(Icons.shopping_cart),
                 ),
               ],
               title: Text(controller.title[controller.currentIndex.value]),

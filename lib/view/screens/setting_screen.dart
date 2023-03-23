@@ -25,7 +25,7 @@ class SettingScreen extends StatelessWidget {
                 ThemeController().changeTheme();
               },
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             GetBuilder<AuthController>(
@@ -39,13 +39,13 @@ class SettingScreen extends StatelessWidget {
                   onPressed: () {
                     Get.defaultDialog(
                       title: 'Log Out From App',
-                      titleStyle: TextStyle(
+                      titleStyle: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
                       ),
                       middleText: 'Are you sure you need to logout ',
-                      middleTextStyle: TextStyle(
+                      middleTextStyle: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                         color: Colors.black,

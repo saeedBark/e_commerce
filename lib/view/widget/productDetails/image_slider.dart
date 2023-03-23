@@ -45,7 +45,7 @@ class _ImageSliderState extends State<ImageSlider> {
                 });
               }),
           itemBuilder: (context, index, real) => Container(
-            margin: EdgeInsets.all(10),
+            margin: const EdgeInsets.all(10),
             decoration: BoxDecoration(
               image: DecorationImage(
                   image: NetworkImage(widget.imageUrl), fit: BoxFit.fill),
@@ -87,7 +87,7 @@ class _ImageSliderState extends State<ImageSlider> {
                     outerBorder: cerrenColor == index,
                     color: colorSelected[index]),
               ),
-              separatorBuilder: (context, index) => SizedBox(
+              separatorBuilder: (context, index) => const SizedBox(
                 height: 3,
               ),
               itemCount: colorSelected.length,
