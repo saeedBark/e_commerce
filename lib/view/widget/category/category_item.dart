@@ -7,7 +7,6 @@ import 'package:e_commerce/view/widget/text_util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../logic/controller/category_controller.dart';
 
 class CategoryItem extends StatelessWidget {
