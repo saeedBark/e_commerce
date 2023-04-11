@@ -8,14 +8,22 @@ import 'package:google_sign_in/google_sign_in.dart';
 class AuthController extends GetxController {
   bool isVisibilty = false;
   bool ischeckBox = false;
-  var displayUserName = '';
+  var displayUserName = ''.obs;
   var googleSinup = GoogleSignIn();
-  var displayUserPhoto = '';
+  var displayUserPhoto = ''.obs;
+  var displyUserEmail = ''.obs;
   final GetStorage boxAuth = GetStorage();
   var isSignIn = false;
   FirebaseAuth auth = FirebaseAuth.instance;
 
+@override
+User ? get userProfile => auth.currentUser;
 
+  void onInit() {
+    // TODO: implement onInit
+displayUserName.value = (userProfile != null ? userProfile!.displayName : "")!;
+    super.onInit();
+  }
 
   void visibilty() {
     isVisibilty = !isVisibilty;
@@ -36,7 +44,7 @@ class AuthController extends GetxController {
       await auth.createUserWithEmailAndPassword(
           email: email, password: password)
           .then((value) {
-        displayUserName = name;
+        displayUserName.value = name;
         auth.currentUser!.updateDisplayName(name);
 
       }
@@ -79,7 +87,7 @@ class AuthController extends GetxController {
       await auth.signInWithEmailAndPassword(
           email: email, password: password)
           .then((value) {
-        auth.currentUser!.updateDisplayName(displayUserName);
+        auth.currentUser!.updateDisplayName(displayUserName.value);
         isSignIn = true;
         boxAuth.write('saveLogin', isSignIn);
 
@@ -117,8 +125,8 @@ class AuthController extends GetxController {
   void googleSignUpApp() async{
     try{
       final GoogleSignInAccount? googleUser = await googleSinup.signIn();
-      displayUserName = googleUser!.displayName!;
-      displayUserPhoto = googleUser.photoUrl!;
+      displayUserName.value = googleUser!.displayName!;
+      displayUserPhoto.value = googleUser.photoUrl!;
       isSignIn = true;
       boxAuth.write('saveLogin', isSignIn);
       update();
@@ -177,8 +185,9 @@ class AuthController extends GetxController {
     await  auth.signOut();
   //  await googleSinup.signOut();
   //  await FacebookAuth.
-      displayUserName = '';
-      displayUserPhoto= '';
+      displayUserName.value = '';
+      displayUserPhoto.value= '';
+      displyUserEmail.value = '';
       update();
       Get.offNamed(Routes.welcomeScreen);
 

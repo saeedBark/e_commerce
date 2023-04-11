@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 
 import '../widget/setting/darkMode_widget.dart';
 import '../widget/setting/log_out_widget.dart';
+import '../widget/setting/profile_widget.dart';
 
 class SettingScreen extends StatelessWidget {
   const SettingScreen({super.key});
@@ -18,8 +19,8 @@ class SettingScreen extends StatelessWidget {
       body: ListView(
         padding: EdgeInsets.all(24),
         children: [
-          //    ProfilImage(),
-          SizedBox(
+          ProfileImage(),
+          const SizedBox(
             height: 10,
           ),
           Divider(
