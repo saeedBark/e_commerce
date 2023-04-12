@@ -3,7 +3,6 @@ import 'package:e_commerce/view/widget/home/card_item.dart';
 import 'package:e_commerce/view/widget/home/search_form_text.dart';
 import 'package:e_commerce/view/widget/text_util.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 
 class HomeScreen extends StatelessWidget {

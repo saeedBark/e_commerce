@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SettingController extends GetxController {
@@ -5,5 +6,12 @@ class SettingController extends GetxController {
 
  String capitalize(String profileName){
   return profileName.split(" ").map((name) => name.capitalize).join(" ");
+ }
+
+
+
+ void changeLanguage(String typeLang){
+  Get.updateLocale(Locale(typeLang));
+  update();
  }
 }
