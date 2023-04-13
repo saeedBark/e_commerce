@@ -27,7 +27,7 @@ class Ecommerce extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       locale: Locale(ene),
       translations: LocaliztionApp(),
-      fallbackLocale: Locale(ene),
+      fallbackLocale: Locale(GetStorage().read<String>('lang').toString()),
       title: 'Shop app',
       theme: ThemeApp.light,
       darkTheme: ThemeApp.dark,

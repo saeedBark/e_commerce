@@ -35,7 +35,7 @@ class LanguageWidget extends StatelessWidget {
                   TextUtils(
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
-                    text: 'Language',
+                    text: 'Language'.tr,
                     color: Get.isDarkMode ? Colors.white : Colors.black,
                     underline: TextDecoration.none,
                   ),
@@ -85,9 +85,10 @@ class LanguageWidget extends StatelessWidget {
                       ),
                     ),
                   ],
-                  value: ene,
+                  value: controller.langLocal,
                   onChanged: (value) {
                     controller.changeLanguage(value!);
+                    Get.updateLocale(Locale(value));
                   },
                 ),
               ),

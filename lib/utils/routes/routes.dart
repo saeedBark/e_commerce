@@ -9,6 +9,8 @@ import 'package:e_commerce/view/screens/main_screen.dart';
 import 'package:e_commerce/view/screens/welcome_screen.dart';
 import 'package:get/get.dart';
 
+import '../../view/screens/payment_screen.dart';
+
 class AppRoute {
   static const welcom = Routes.welcomeScreen;
   static const mainscreen = Routes.mainScreen;
@@ -46,6 +48,15 @@ class AppRoute {
         ProductBinding(),
       ],
     ),
+    GetPage(
+      name: Routes.paymentScreen,
+      page: () => PaymentScreen(),
+      bindings:[
+        AuthBinding(),
+        ProductBinding(),
+        MainBainding(),
+      ],
+    ),
   ];
 }
 
@@ -56,4 +67,5 @@ class Routes {
   static const forgetScreen = '/forgetScreen';
   static const mainScreen = '/mainScreen';
   static const cartScreen = '/cartScreen';
+  static const paymentScreen = '/paymentScreen';
 }
