@@ -1,5 +1,6 @@
 import 'package:e_commerce/utils/theme.dart';
 import 'package:e_commerce/view/widget/payment/delvery_container_widget.dart';
+import 'package:e_commerce/view/widget/payment/payment_method_widget.dart';
 import 'package:e_commerce/view/widget/text_util.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -21,6 +22,7 @@ class PaymentScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(15.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               TextUtils(
                 fontSize: 24,
@@ -32,7 +34,7 @@ class PaymentScreen extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-                 DeliveryContainerWidget(),
+              const DeliveryContainerWidget(),
               const SizedBox(
                 height: 20,
               ),
@@ -50,6 +52,7 @@ class PaymentScreen extends StatelessWidget {
               const SizedBox(
                 height: 30,
               ),
+              PaymentMethodWidget(),
             ],
           ),
         ),
