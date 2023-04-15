@@ -36,7 +36,7 @@ class PaymentScreen extends StatelessWidget {
               ),
               const DeliveryContainerWidget(),
               const SizedBox(
-                height: 20,
+                height: 15,
               ),
               TextUtils(
                 fontSize: 24,
@@ -50,9 +50,44 @@ class PaymentScreen extends StatelessWidget {
               ),
               // PaymentMethodWidget(),
               const SizedBox(
-                height: 30,
+                height: 15,
               ),
               PaymentMethodWidget(),
+              const SizedBox(
+                height: 30,
+              ),
+              Center(
+                child: TextUtils(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  text: 'Total : 200\$',
+                  color: Get.isDarkMode ? Colors.white : Colors.black,
+                  underline: TextDecoration.none,
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Center(
+                child: SizedBox(
+                  height: 50,
+                  width: 150,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      elevation: 0,
+                      backgroundColor: Get.isDarkMode ? pinkColor : mainColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    onPressed: () {},
+                    child: const Text(
+                      'Pay Now',
+                      style: TextStyle(fontSize: 20, color: Colors.white),
+                    ),
+                  ),
+                ),
+              )
             ],
           ),
         ),
