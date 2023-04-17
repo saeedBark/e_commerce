@@ -1,8 +1,11 @@
+import 'package:e_commerce/logic/controller/auth_controller.dart';
+import 'package:e_commerce/utils/routes/routes.dart';
 import 'package:e_commerce/utils/theme.dart';
 import 'package:e_commerce/view/widget/text_util.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../logic/controller/payment_controller.dart';
 
 class DeliveryContainerWidget extends StatefulWidget {
   const DeliveryContainerWidget({Key? key}) : super(key: key);
@@ -13,8 +16,11 @@ class DeliveryContainerWidget extends StatefulWidget {
 }
 
 class _DeliveryContainerWidgetState extends State<DeliveryContainerWidget> {
+  final phoneController = TextEditingController();
   int radioContainerIndex = 1;
   bool changeColors = false;
+  final controller = Get.find<PaymentController>();
+  final authcontroller = Get.find<AuthController>();
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -29,40 +35,114 @@ class _DeliveryContainerWidgetState extends State<DeliveryContainerWidget> {
               changeColors = !changeColors;
             });
           },
-          name: 'Saeed Bark ',
           title: 'Saeed Shop',
+          name: 'Saeed Store',
           phone: '42-721-553',
-          adress: 'Mauritania, nouachott ',
+          adress: 'Mauritania, Nouakchott ',
         ),
         SizedBox(
           height: 10,
         ),
-        buildRadioContainer(
-          color: changeColors ? Colors.grey.shade300 : Colors.white,
-          value: 2,
-          icon: InkWell(
-            onTap: () {
-              Get.defaultDialog(
-                title: 'Enter Your Phone Number',
-              );
-            },
-            child: Icon(
-              Icons.contact_phone,
-              size: 20,
-              color: Get.isDarkMode ? pinkColor : mainColor,
+        Obx(() {
+          return     buildRadioContainer(
+            color: changeColors ? Colors.grey.shade300 : Colors.white,
+            value: 2,
+            icon: InkWell(
+              onTap: () {
+                Get.defaultDialog(
+                  title: 'Enter Your Phone Number',
+                  titleStyle: const TextStyle(
+                      fontSize: 16,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold),
+                  backgroundColor: Colors.white,
+                  radius: 10,
+                  textCancel: 'Cancel ',
+                  cancelTextColor: Colors.black,
+                  textConfirm: 'Save ',
+                  confirmTextColor: Colors.black,
+                  onCancel: () {
+                    Get.toNamed(Routes.paymentScreen);
+                  },
+                  onConfirm: () {
+                    Get.back();
+                    controller.phoneNumber.value = phoneController.text;
+                  },
+                  buttonColor: Get.isDarkMode ? pinkColor : mainColor,
+                  content: Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: TextFormField(
+                      controller: phoneController,
+                      maxLength: 8,
+                      cursorColor: Colors.black,
+                      keyboardType: TextInputType.text,
+                      onFieldSubmitted: (value) {
+                        phoneController.text = value;
+                      },
+                      decoration: InputDecoration(
+                        fillColor: Get.isDarkMode
+                            ? pinkColor.withOpacity(0.2)
+                            : mainColor.withOpacity(0.2),
+                        focusColor: Colors.red,
+                        prefixIcon: Icon(
+                          Icons.phone,
+                          color: Get.isDarkMode ? pinkColor : mainColor,
+                        ),
+                        suffixIcon: IconButton(
+                          onPressed: () {
+                            phoneController.clear();
+                          },
+                          icon: const Icon(
+                            Icons.close,
+                            color: Colors.black,
+                          ),
+                        ),
+                        hintText: "Enter Your Phone Number",
+                        hintStyle: const TextStyle(
+                            color: Colors.black45,
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold),
+                        filled: true,
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(color: Colors.white),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(color: Colors.white),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        errorBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(color: Colors.white),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        focusedErrorBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(color: Colors.white),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              },
+              child: Icon(
+                Icons.contact_phone,
+                size: 20,
+                color: Get.isDarkMode ? pinkColor : mainColor,
+              ),
             ),
-          ),
-          onChanged: (int value) {
-            setState(() {
-              radioContainerIndex = value;
-              changeColors = !changeColors;
-            });
-          },
-          name: 'Saeed Store ',
-          title: 'Saeed Shop',
-          phone: '20-611-327',
-          adress: 'Mauritania, noua ',
-        ),
+            onChanged: (int value) {
+              setState(() {
+                radioContainerIndex = value;
+                changeColors = !changeColors;
+              });
+              controller.updatePosition();
+            },
+            title: 'Delivery',
+            name: authcontroller.displayUserName.value,
+            phone: controller.phoneNumber.value,
+            adress: controller.address.value,
+          );
+        })
       ],
     );
   }
@@ -78,7 +158,7 @@ class _DeliveryContainerWidgetState extends State<DeliveryContainerWidget> {
     required Widget icon,
   }) {
     return Container(
-      height: 130,
+      height: 140,
       width: double.infinity,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
@@ -133,9 +213,9 @@ class _DeliveryContainerWidgetState extends State<DeliveryContainerWidget> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
+                    const Text(
                       '🇲🇷 +222 ',
-                      style: const TextStyle(color: Colors.black),
+                      style: TextStyle(color: Colors.black),
                     ),
                     TextUtils(
                       fontSize: 15,
@@ -144,7 +224,7 @@ class _DeliveryContainerWidgetState extends State<DeliveryContainerWidget> {
                       color: Colors.black,
                       underline: TextDecoration.none,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 120,
                     ),
                     SizedBox(
