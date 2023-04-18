@@ -139,6 +139,7 @@ displayUserName.value = (userProfile != null ? userProfile!.displayName : "")!;
         backgroundColor: Colors.green,
         colorText: Colors.white,
       );
+      print(error.toString());
     }
 
   }

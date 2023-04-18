@@ -38,14 +38,14 @@ final authController = Get.find<AuthController>();
                 TextUtils(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
-                  text: controller.capitalize('saeed bark saeed'),
+                  text: controller.capitalize(authController.displayUserName.value),
                   color: Get.isDarkMode ? Colors.white : Colors.black,
                   underline: TextDecoration.none,
                 ),
                 TextUtils(
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
-                  text: 'SaeedBark@gmail.com',
+                  text: authController.displyUserEmail.value,
                   color: Get.isDarkMode ? Colors.white : Colors.black,
                   underline: TextDecoration.none,
                 ),

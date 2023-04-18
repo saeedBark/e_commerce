@@ -50,6 +50,7 @@ dependencies:
   readmore: ^2.2.0
   geolocator: ^9.0.2
   geocoding: ^2.1.0
+
   #flutter_simple_rating_bar: ^0.0.3
 
 dev_dependencies:
