@@ -39,8 +39,8 @@ class CartScreen extends StatelessWidget {
                            CartProductCard(
                              productModels: controller.productsMap.keys
                                  .toList()[index],
-                             index: index, quantity: controller.productsMap
-                               .values.toList()[index],
+                             index: index,
+                             quantity: controller.productsMap.values.toList()[index],
                            ),
                        separatorBuilder: (context, index) =>
                            const SizedBox(

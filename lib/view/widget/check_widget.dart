@@ -1,7 +1,6 @@
 import 'package:e_commerce/logic/controller/auth_controller.dart';
 import 'package:e_commerce/view/widget/text_util.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 
@@ -39,21 +38,21 @@ class CheckWidget extends StatelessWidget {
             ),
           ),
           const SizedBox(
-            width: 5,
+            width: 15,
           ),
           Row(
             children: [
               TextUtils(
-                  fontSize: 20,
+                  fontSize: 16,
                   fontWeight: FontWeight.normal,
                   text: 'I accept ',
-                  color: Get.isDarkMode ? Colors.black : Colors.white,
+                  color: Get.isDarkMode ? Colors.white : Colors.black ,
                   underline: TextDecoration.none),
               TextUtils(
-                  fontSize: 20,
+                  fontSize: 16,
                   fontWeight: FontWeight.normal,
                   text: 'terms & conditions ',
-                  color: Get.isDarkMode ? Colors.black : Colors.white,
+                  color: Get.isDarkMode ? Colors.white : Colors.black ,
                   underline: TextDecoration.underline)
             ],
           )

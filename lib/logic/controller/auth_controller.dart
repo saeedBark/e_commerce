@@ -16,12 +16,15 @@ class AuthController extends GetxController {
   var isSignIn = false;
   FirebaseAuth auth = FirebaseAuth.instance;
 
-@override
-User ? get userProfile => auth.currentUser;
+  @override
+  User? get userProfile => auth.currentUser;
 
   void onInit() {
     // TODO: implement onInit
-displayUserName.value = (userProfile != null ? userProfile!.displayName : "")!;
+    displayUserName.value = (userProfile != null ? userProfile!.displayName : "")!;
+   // displayUserPhoto.value = (userProfile != null ? userProfile!.photoURL : "")! ;
+    displyUserEmail.value =
+        (userProfile != null ? userProfile!.email : "")!;
     super.onInit();
   }
 
@@ -41,16 +44,14 @@ displayUserName.value = (userProfile != null ? userProfile!.displayName : "")!;
     required String password,
   }) async {
     try {
-      await auth.createUserWithEmailAndPassword(
-          email: email, password: password)
+      await auth
+          .createUserWithEmailAndPassword(email: email, password: password)
           .then((value) {
         displayUserName.value = name;
         auth.currentUser!.updateDisplayName(name);
-
-      }
-      );
-             update();
-             Get.offNamed(Routes.mainScreen);
+      });
+      update();
+      Get.offNamed(Routes.mainScreen);
     } on FirebaseAuthException catch (error) {
       String title = error.code.replaceAll('-', ' ').capitalize!;
       String message = '';
@@ -84,22 +85,21 @@ displayUserName.value = (userProfile != null ? userProfile!.displayName : "")!;
     required String password,
   }) async {
     try {
-      await auth.signInWithEmailAndPassword(
-          email: email, password: password)
-          .then((value) {
-        auth.currentUser!.updateDisplayName(displayUserName.value);
+      await auth
+          .signInWithEmailAndPassword(email: email, password: password)
+          .then((value) =>
+     displayUserName.value =   auth.currentUser!.displayName!);
         isSignIn = true;
         boxAuth.write('saveLogin', isSignIn);
 
-      }
-      );
       update();
       Get.offNamed(Routes.mainScreen);
     } on FirebaseAuthException catch (error) {
       String title = error.code.replaceAll('-', ' ').capitalize!;
       String message = '';
       if (error.code == 'user-not-found') {
-        message = 'Account does not exist for that $email.. Create you account by signing up ...';
+        message =
+            'Account does not exist for that $email.. Create you account by signing up ...';
       } else if (error.code == 'wrong password') {
         message = 'Invalid Password.. Please try again!.';
       } else {
@@ -122,16 +122,23 @@ displayUserName.value = (userProfile != null ? userProfile!.displayName : "")!;
       );
     }
   }
-  void googleSignUpApp() async{
-    try{
+
+  void googleSignUpApp() async {
+    try {
       final GoogleSignInAccount? googleUser = await googleSinup.signIn();
       displayUserName.value = googleUser!.displayName!;
       displayUserPhoto.value = googleUser.photoUrl!;
+      displyUserEmail.value = googleUser.email!;
+      GoogleSignInAuthentication googleSignInAuthentication =
+          await googleUser.authentication;
+      final AuthCredential credential = GoogleAuthProvider.credential(
+          idToken: googleSignInAuthentication.idToken);
+      await auth.signInWithCredential(credential);
       isSignIn = true;
       boxAuth.write('saveLogin', isSignIn);
       update();
       Get.offNamed(Routes.mainScreen);
-    }catch(error){
+    } catch (error) {
       Get.snackbar(
         'Error!',
         error.toString(),
@@ -141,26 +148,23 @@ displayUserName.value = (userProfile != null ? userProfile!.displayName : "")!;
       );
       print(error.toString());
     }
-
   }
 
   void facebookSignUpApp() {}
 
-
   void restPassword({
-   required  String email,
+    required String email,
   }) async {
     try {
       await auth.sendPasswordResetEmail(email: email);
       update();
       Get.back();
-
     } on FirebaseAuthException catch (error) {
       String title = error.code.replaceAll('-', ' ').capitalize!;
       String message = '';
       if (error.code == 'user-not-found') {
         message =
-        'Account does not exist for that $email.. Create you account by signing up ...';
+            'Account does not exist for that $email.. Create you account by signing up ...';
       } else {
         message = error.message.toString();
       }
@@ -181,21 +185,21 @@ displayUserName.value = (userProfile != null ? userProfile!.displayName : "")!;
       );
     }
   }
-  void signOutFromApp() async{
-    try{
-    await  auth.signOut();
-  //  await googleSinup.signOut();
-  //  await FacebookAuth.
+
+  void signOutFromApp() async {
+    try {
+      await auth.signOut();
+      //  await googleSinup.signOut();
+      //  await FacebookAuth.
       displayUserName.value = '';
-      displayUserPhoto.value= '';
+      displayUserPhoto.value = '';
       displyUserEmail.value = '';
       update();
       Get.offNamed(Routes.welcomeScreen);
 
-    isSignIn = false;
-    boxAuth.remove('saveLogin');
-
-    }catch(error){
+      isSignIn = false;
+      boxAuth.remove('saveLogin');
+    } catch (error) {
       Get.snackbar(
         'Error!',
         error.toString(),

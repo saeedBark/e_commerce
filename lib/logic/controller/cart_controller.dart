@@ -30,9 +30,10 @@ class CartController extends GetxController {
   }
 
   void removeProductFromCart(ProductModels productModels) {
-    if(productsMap.containsKey(productModels) && productsMap[productModels] == 1){
+    if (productsMap.containsKey(productModels) &&
+        productsMap[productModels] == 1) {
       productsMap.removeWhere((key, value) => key == productModels);
-    }else{
+    } else {
       productsMap[productModels] -= 1;
     }
   }
@@ -44,13 +45,13 @@ class CartController extends GetxController {
   void clearAllProducts() {
     Get.defaultDialog(
       title: 'Clean Products',
-      titleStyle: TextStyle(
+      titleStyle: const TextStyle(
         fontSize: 18,
         fontWeight: FontWeight.bold,
         color: Colors.black,
       ),
       middleText: 'Are you sure you need to clear all products ',
-      middleTextStyle: TextStyle(
+      middleTextStyle: const TextStyle(
         fontSize: 18,
         fontWeight: FontWeight.bold,
         color: Colors.black,
@@ -58,19 +59,18 @@ class CartController extends GetxController {
       backgroundColor: Colors.grey,
       radius: 10,
       textCancel: 'NO',
-      cancelTextColor:Get.isDarkMode ? Colors.white : blackColor,
+      cancelTextColor: Get.isDarkMode ? Colors.white : blackColor,
       textConfirm: 'YES',
       confirmTextColor: Get.isDarkMode ? Colors.white : blackColor,
-      onCancel: (){
+      onCancel: () {
         Get.toNamed(Routes.cartScreen);
       },
-      onConfirm: (){
+      onConfirm: () {
         productsMap.clear();
         Get.back();
       },
-      buttonColor:Get.isDarkMode? pinkColor:mainColor ,
+      buttonColor: Get.isDarkMode ? pinkColor : mainColor,
     );
-
   }
 
   get productSubTotal =>
@@ -81,4 +81,16 @@ class CartController extends GetxController {
       .toList()
       .reduce((value, element) => value + element)
       .toStringAsFixed(2);
+
+  int quantity() {
+    if(productsMap.isEmpty){
+      return 0;
+    }
+    else {
+      return productsMap.entries
+          .map((e) => e.value)
+          .toList()
+          .reduce((value, element) => value + element);
+    }
+  }
 }

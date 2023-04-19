@@ -15,46 +15,46 @@ final authController = Get.find<AuthController>();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+     Obx(() =>    Row(
+       children: [
+         Container(
+           height: 100,
+           width: 100,
+           decoration:  BoxDecoration(
+               color: Colors.white,
+               shape: BoxShape.circle,
+               image: DecorationImage(
+                   image: NetworkImage(
+                       authController.displayUserPhoto.value),
+                   fit: BoxFit.cover)),
+         ),
+         const SizedBox(
+           width: 15,
+         ),
+         Column(
+           crossAxisAlignment: CrossAxisAlignment.start,
+           children: [
+             TextUtils(
+               fontSize: 20,
+               fontWeight: FontWeight.bold,
+               text: controller.capitalize(authController.displayUserName.value),
+               color: Get.isDarkMode ? Colors.white : Colors.black,
+               underline: TextDecoration.none,
+             ),
+             TextUtils(
+               fontSize: 14,
+               fontWeight: FontWeight.bold,
+               text: authController.displyUserEmail.value,
+               color: Get.isDarkMode ? Colors.white : Colors.black,
+               underline: TextDecoration.none,
+             ),
+           ],
+         )
+       ],
 
-           Row(
-          children: [
-            Container(
-              height: 100,
-              width: 100,
-              decoration: const BoxDecoration(
-                  color: Colors.white,
-                  shape: BoxShape.circle,
-                  image: DecorationImage(
-                      image: NetworkImage(
-                          'https://firebasestorage.googleapis.com/v0/b/social-4984d.appspot.com/o/users%2Fsaeed7.jpeg?alt=media&token=a9f49079-f235-44b2-9a19-0fcd77680ca6'),
-                      fit: BoxFit.cover)),
-            ),
-            const SizedBox(
-              width: 15,
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                TextUtils(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  text: controller.capitalize(authController.displayUserName.value),
-                  color: Get.isDarkMode ? Colors.white : Colors.black,
-                  underline: TextDecoration.none,
-                ),
-                TextUtils(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  text: authController.displyUserEmail.value,
-                  color: Get.isDarkMode ? Colors.white : Colors.black,
-                  underline: TextDecoration.none,
-                ),
-              ],
-            )
-          ],
 
+     ),),
 
-      ),
       ],
     );
   }
