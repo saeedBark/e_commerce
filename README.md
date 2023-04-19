@@ -1,6 +1,17 @@
-# e_commerce
+# E_commerce
 
-A new Flutter project.
+Social App Features :
+
+- Firebase
+- Api
+- GetX
+- Login
+- Register
+- Google Register
+- Search
+- Mode(Light & Dark )
+- GetStorage
+
 
 ## Getting Started
 
