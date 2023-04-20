@@ -44,7 +44,7 @@ class CategoryWidget extends StatelessWidget {
                         alignment: Alignment.bottomLeft,
                         child: Text(
                           controller.categoryNameList[index],
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 22,
                               color: Colors.white,
                               backgroundColor: Colors.black38),

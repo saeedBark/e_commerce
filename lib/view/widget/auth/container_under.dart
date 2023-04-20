@@ -1,9 +1,6 @@
 import 'package:e_commerce/utils/theme.dart';
 import 'package:e_commerce/view/widget/text_util.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 
 class ContainerUnder extends StatelessWidget {

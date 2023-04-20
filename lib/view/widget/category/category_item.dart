@@ -4,7 +4,6 @@ import 'package:e_commerce/model/product_models.dart';
 import 'package:e_commerce/utils/theme.dart';
 import 'package:e_commerce/view/screens/product_details_screen.dart';
 import 'package:e_commerce/view/widget/text_util.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../logic/controller/category_controller.dart';
@@ -20,7 +19,7 @@ class CategoryItem extends StatelessWidget {
     return Scaffold(
         backgroundColor: context.theme.backgroundColor,
         appBar: AppBar(
-          title: Text('Category Item'),
+          title: const Text('Category Item'),
           centerTitle: true,
           backgroundColor: Get.isDarkMode ? Colors.black : mainColor,
         ),

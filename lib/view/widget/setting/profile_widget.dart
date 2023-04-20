@@ -20,12 +20,12 @@ final authController = Get.find<AuthController>();
          Container(
            height: 100,
            width: 100,
-           decoration:  BoxDecoration(
+           decoration:  const BoxDecoration(
                color: Colors.white,
                shape: BoxShape.circle,
                image: DecorationImage(
                    image: NetworkImage(
-                       authController.displayUserPhoto.value),
+                      'https://images.unsplash.com/photo-1681844931449-e0992a27d157?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0NHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60'),
                    fit: BoxFit.cover)),
          ),
          const SizedBox(

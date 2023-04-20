@@ -49,6 +49,8 @@ class AuthController extends GetxController {
           .then((value) {
         displayUserName.value = name;
         auth.currentUser!.updateDisplayName(name);
+        displyUserEmail.value = email;
+        auth.currentUser!.updateEmail(email);
       });
       update();
       Get.offNamed(Routes.mainScreen);
@@ -88,7 +90,9 @@ class AuthController extends GetxController {
       await auth
           .signInWithEmailAndPassword(email: email, password: password)
           .then((value) =>
-     displayUserName.value =   auth.currentUser!.displayName!);
+     displayUserName.value =   auth.currentUser!.displayName!
+      );
+
         isSignIn = true;
         boxAuth.write('saveLogin', isSignIn);
 
@@ -127,8 +131,8 @@ class AuthController extends GetxController {
     try {
       final GoogleSignInAccount? googleUser = await googleSinup.signIn();
       displayUserName.value = googleUser!.displayName!;
-      displayUserPhoto.value = googleUser.photoUrl!;
-      displyUserEmail.value = googleUser.email!;
+     // displayUserPhoto.value = googleUser.photoUrl!;
+      displyUserEmail.value = googleUser.email;
       GoogleSignInAuthentication googleSignInAuthentication =
           await googleUser.authentication;
       final AuthCredential credential = GoogleAuthProvider.credential(

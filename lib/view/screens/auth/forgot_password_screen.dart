@@ -2,10 +2,7 @@ import 'package:e_commerce/logic/controller/auth_controller.dart';
 import 'package:e_commerce/utils/my_string%20.dart';
 import 'package:e_commerce/view/widget/auth/auth_button.dart';
 import 'package:e_commerce/view/widget/auth/auth_text_from_field.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 
 class ForgetScreen extends StatelessWidget {

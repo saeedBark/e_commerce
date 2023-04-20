@@ -1,12 +1,7 @@
 import 'package:e_commerce/utils/routes/routes.dart';
 import 'package:e_commerce/utils/theme.dart';
-import 'package:e_commerce/view/screens/auth/login_screen.dart';
-import 'package:e_commerce/view/screens/auth/signup_screen.dart';
 import 'package:e_commerce/view/widget/text_util.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 
 class WelcomeScreen extends StatelessWidget {

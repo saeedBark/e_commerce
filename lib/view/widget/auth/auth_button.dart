@@ -1,8 +1,6 @@
 import 'package:e_commerce/utils/theme.dart';
 import 'package:e_commerce/view/widget/text_util.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 
 class AuthButton extends StatelessWidget {
@@ -16,7 +14,7 @@ class AuthButton extends StatelessWidget {
       onPressed: onpress,
       style: ElevatedButton.styleFrom(
         backgroundColor: Get.isDarkMode ? mainColor : Colors.deepOrange,
-        minimumSize: Size(350, 50),
+        minimumSize: const Size(350, 50),
       ),
       child: TextUtils(
           fontSize: 22,

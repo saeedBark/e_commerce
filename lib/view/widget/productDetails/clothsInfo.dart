@@ -83,19 +83,7 @@ class ClothesInfo extends StatelessWidget {
               const SizedBox(
                 width: 8,
               ),
-              // RatingBar(
-              //   rating: rate,
-              //   icon: Icon(Icons.star,size: 20,color: Colors.grey,),
-              //   spacing: 1,
-              //   starCount: 5,
-              //   isIndicator: false,
-              //   size: 20,
-              //   allowHalfRating: true,
-              //   onRatingCallback: (value,isIndictor){
-              //     isIndictor.value = true;
-              //   },
-              //   color: Colors.orangeAccent,
-              // ),
+
               RatingBarIndicator(
                 rating: rate,
                 itemBuilder: (context, index) => const Icon(
